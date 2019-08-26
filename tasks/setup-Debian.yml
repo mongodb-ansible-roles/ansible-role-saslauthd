@@ -1,0 +1,13 @@
+---
+- name: Install saslauthd packages
+  apt:
+    name: "{{ item }}"
+  loop:
+    - libsasl2-modules
+    - sasl2-bin
+
+- name: Add /usr/sbin to path
+  lineinfile:
+    line: export PATH=/usr/sbin:$PATH
+    path: /etc/profile
+    regexp: '^export PATH=/usr/sbin:\$PATH'
